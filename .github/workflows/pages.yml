@@ -1,4 +1,5 @@
-name: Deploy Github Pages
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -19,8 +20,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-#
-
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -40,5 +39,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-#
