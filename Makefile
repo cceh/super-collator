@@ -2,7 +2,7 @@
 
 DIRS=src/ tests/unit/ docs/ scripts/ # tests/performance/
 BROWSER=firefox
-PYTEST=pytest --doctest-modules --doctest-glob="*.rst"
+PYTEST=pytest --doctest-modules --doctest-glob="*.rst" --doctest-ignore-import-errors
 
 all: lint test
 
