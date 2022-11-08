@@ -23,18 +23,19 @@ Needleman-Wunsch sequence alignment algorithm.
 
 .. code-block:: python
 
-   >>> from super_collator.strategy import CommonNgramsStrategy
-   >>> from super_collator.token import SingleToken
-   >>> from super_collator.super_collator import align, to_table
+   >>> from super_collator.aligner import Aligner
+   >>> from super_collator.ngrams import NGrams
+   >>> from super_collator.super_collator import to_table
 
+   >>> aligner = Aligner(-0.5, -0.5, -0.5)
    >>> a = "Lorem ipsum dollar amat adipiscing elit"
    >>> b = "qui dolorem ipsum quia dolor sit amet consectetur adipisci velit"
    >>>
-   >>> a = [SingleToken(s) for s in a.split()]
-   >>> b = [SingleToken(s) for s in b.split()]
+   >>> a = [NGrams(s).load(s, 3) for s in a.split()]
+   >>> b = [NGrams(s).load(s, 3) for s in b.split()]
    >>>
-   >>> c, score = align(a, b, CommonNgramsStrategy(2))
-   >>> print(to_table(c))  # doctest: +NORMALIZE_WHITESPACE
+   >>> a, b, score = aligner.align(a, b, NGrams.similarity, lambda: NGrams("-"))
+   >>> print(to_table(list(map(str, a)), list(map(str, b))))  # doctest: +NORMALIZE_WHITESPACE
    -   Lorem   ipsum -    dollar -   amat -           adipiscing elit
    qui dolorem ipsum quia dolor  sit amet consectetur adipisci   velit
 

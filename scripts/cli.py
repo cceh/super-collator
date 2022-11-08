@@ -1,12 +1,13 @@
+#!/usr/bin/python3
 """CLI script"""
 
 import argparse
 import sys
 
 from super_collator.aligner import Aligner
-from super_collator.strategy import CommonNgramsStrategy
+from super_collator.ngrams import NGrams
 from super_collator.token import SingleToken
-from super_collator.super_collator import align, to_table
+from super_collator.super_collator import to_table
 
 
 def build_parser(description: str) -> argparse.ArgumentParser:
@@ -40,13 +41,17 @@ def build_parser(description: str) -> argparse.ArgumentParser:
 def main():
     parser = build_parser(__doc__)
     args = parser.parse_args()
+    aligner = Aligner()
 
-    a = [SingleToken(s) for s in args.inputs[0].split()]
-    for inp in args.inputs[1:]:
-        b = [SingleToken(s) for s in inp.split()]
-        a, score = align(a, b, CommonNgramsStrategy(2))
+    aa = [NGrams([s]).load(s, 2) for s in args.inputs[0].split()]
+    for n, inp in enumerate(args.inputs[1:]):
+        bb = [NGrams([s]).load(s, 2) for s in inp.split()]
+        aa, bb, score = aligner.align(
+            aa, bb, NGrams.similarity, lambda: NGrams(["-"] * n), lambda: NGrams(["-"])
+        )
+        aa = [NGrams.merge(a, b, list.__add__) for a, b in zip(aa, bb)]
 
-    print(to_table(a).strip())
+    print(to_table(*zip(*[a.user_data for a in aa])).strip())
     return 0
 
 

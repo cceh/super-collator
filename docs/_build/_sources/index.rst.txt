@@ -11,8 +11,7 @@ Needleman-Wunsch sequence alignment algorithm.
 
    examples
    aligner
-   strategy
-   token
+   ngrams
    references
 
 

@@ -2,11 +2,10 @@
 
 import collections
 import logging
-from typing import Tuple, List
+from typing import Tuple, List, Sequence, Optional, Callable
 
-from .token import Token, MultiToken, TT, TSeq
-from .strategy import Strategy
 
+DEBUG = False
 
 class Data:
     """Private data class for the Needleman-Wunsch+Gotoh sequence aligner."""
@@ -35,8 +34,19 @@ class Aligner:
     (affine gap).  `k` is the gap size, `v` is the gap opening score and `u` the gap
     extension score.
 
-    The aligner is type-agnostic and expects only to call the method
-    :func:`Strategy.similarity` on the given strategy.
+    The aligner is type-agnostic.  When the aligner wants to compare two objects, it
+    calls the method :func:`similarity` with both objects as arguments.  This method
+    should return the score of the alignment.  The score should increase with the
+    desirability of the alignment, but otherwise there are no fixed rules.
+
+    The score must harmonize with the penalties for inserting gaps. If the score for
+    opening a gap is -1.0 (the default) then a satisfactory match should return a score
+    > 1.0.
+
+    The :func:`similarity` function may consult a PAM or BLOSUM matrix, or compute a
+    hamming distance between the arguments.  It may also use auxiliary data like
+    Part-of-Speech tags.  In this case the data type aligned could be a dict containing
+    the word and the POS-tag.
 
     .. seealso::
 
@@ -62,15 +72,25 @@ class Aligner:
         """The gap extension score `u`."""
 
     def align(
-        self, strategy: Strategy[TT], tokens_a: TSeq[TT], tokens_b: TSeq[TT]
-    ) -> Tuple[TSeq[TT], float]:
+        self,
+        seq_a: Sequence[object],
+        seq_b: Sequence[object],
+        similarity: Callable[[object, object], float],
+        gap_a: Optional[Callable[[], object]] = None,
+        gap_b: Optional[Callable[[], object]] = None,
+    ) -> Tuple[Sequence[object], Sequence[object], float]:
         """Align two sequences.
 
-        :return: the aligned sequence (of MultiTokens) and the score
+        :param similarity: a callable that returns the similarity of two objects
+        :param gap_a: insert gap_a() for a gap in sequence a. None inserts None.
+        :param gap_b: insert gap_b() for a gap in sequence b. None inserts gap_a().
+        :return: the aligned sequences and the score
         """
 
-        len_a = len(tokens_a)
-        len_b = len(tokens_b)
+        gap_b = gap_b or gap_a
+
+        len_a = len(seq_a)
+        len_b = len(seq_b)
 
         len_matrix: List[List[int]] = []  # list[len_a + 1]
         """The backtracking matrix.  0 stands for a match.  Negative numbers represent a
@@ -99,12 +119,12 @@ class Aligner:
             this_row.append(data)
             this_len_row.append(j)
 
-        if __debug__:
+        if __debug__ and DEBUG:
             matrix = []
             matrix.append(this_row[:])
 
         # Score the matrix
-        for i, a in enumerate(tokens_a, start=1):
+        for i, a in enumerate(seq_a, start=1):
 
             # add new len_row to matrix
             this_len_row = []
@@ -117,7 +137,7 @@ class Aligner:
             left.q = left.score
             # left.qSize = i
             j = 0
-            for j, b in enumerate(tokens_b, start=1):
+            for j, b in enumerate(seq_b, start=1):
                 top = this_row[j]
                 curr = Data(0.0)
 
@@ -133,7 +153,7 @@ class Aligner:
                     curr.q = left.q + self.extend_score
                     curr.qSize = left.qSize + 1
 
-                d: float = diag.score + strategy.similarity(a, b)
+                d: float = diag.score + similarity(a, b)
 
                 # Decide which operation is optimal and perform it
                 if (d > curr.p) and (d > curr.q):
@@ -152,42 +172,46 @@ class Aligner:
                 diag = top
                 left = curr
 
-            if __debug__:
+            if __debug__ and DEBUG:
                 matrix.append(this_row[:])
 
         # Walk back and output alignments.
 
-        alignment: collections.deque[Token[TT]] = collections.deque()
+        aligned_a: collections.deque[object] = collections.deque()
+        aligned_b: collections.deque[object] = collections.deque()
 
         i = len_a
         j = len_b
         while (i > 0) or (j > 0):
             len_m = len_matrix[i][j]
             if len_m == 0:
-                alignment.appendleft(MultiToken(tokens_a[i - 1], tokens_b[j - 1]))
+                aligned_a.appendleft(seq_a[i - 1])
+                aligned_b.appendleft(seq_b[j - 1])
                 i -= 1
                 j -= 1
             else:
                 if len_m < 0:
                     for _ in range(-len_m):
-                        alignment.appendleft(MultiToken(tokens_a[i - 1], None))
+                        aligned_a.appendleft(seq_a[i - 1])
+                        aligned_b.appendleft(gap_b() if gap_b else None)
                         i -= 1
                 else:
                     for _ in range(len_m):
-                        alignment.appendleft(MultiToken(None, tokens_b[j - 1]))
+                        aligned_a.appendleft(gap_a() if gap_a else None)
+                        aligned_b.appendleft(seq_b[j - 1])
                         j -= 1
 
-        if __debug__:
-            logging.debug(build_debug_matrix(matrix, len_matrix, tokens_a, tokens_b))
+        if __debug__ and DEBUG:
+            logging.debug(build_debug_matrix(matrix, len_matrix, seq_a, seq_b))
 
-        return alignment, this_row[-1].score
+        return aligned_a, aligned_b, this_row[-1].score
 
 
 def build_debug_matrix(
     matrix: List[List[Data]],
     len_matrix: List[List[int]],
-    ts_a: TSeq,
-    ts_b: TSeq,
+    ts_a: Sequence[object],
+    ts_b: Sequence[object],
 ) -> str:
     """Build a human-readable debug matrix.
 

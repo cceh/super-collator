@@ -52,7 +52,7 @@ badges: coverage
 tox:
 	tox
 
-dist: test coverage # badges
+dist: clean test coverage badges
 	python3 -m build
 	twine check dist/*
 

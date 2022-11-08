@@ -41,8 +41,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aligner.html">Aligner</a></li>
-<li class="toctree-l1"><a class="reference internal" href="strategy.html">Strategy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="token.html">Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
@@ -76,69 +75,32 @@
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
- | <a href="#U"><strong>U</strong></a>
  
 </div>
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.MultiToken.__getitem__">__getitem__() (MultiToken method)</a>
-
-      <ul>
-        <li><a href="token.html#super_collator.token.SingleToken.__getitem__">(SingleToken method)</a>
-</li>
-        <li><a href="token.html#super_collator.token.Token.__getitem__">(Token method)</a>
-</li>
-      </ul></li>
       <li><a href="aligner.html#super_collator.aligner.Aligner.__init__">__init__() (Aligner method)</a>
 
       <ul>
-        <li><a href="strategy.html#super_collator.strategy.CommonNgramsStrategy.__init__">(CommonNgramsStrategy method)</a>
-</li>
         <li><a href="aligner.html#super_collator.aligner.Data.__init__">(Data method)</a>
 </li>
-        <li><a href="token.html#super_collator.token.MultiToken.__init__">(MultiToken method)</a>
-</li>
-        <li><a href="token.html#super_collator.token.SingleToken.__init__">(SingleToken method)</a>
-</li>
-        <li><a href="token.html#super_collator.token.Token.__init__">(Token method)</a>
+        <li><a href="ngrams.html#super_collator.ngrams.NGrams.__init__">(NGrams method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.MultiToken.__iter__">__iter__() (MultiToken method)</a>
-
-      <ul>
-        <li><a href="token.html#super_collator.token.SingleToken.__iter__">(SingleToken method)</a>
+      <li><a href="ngrams.html#super_collator.ngrams.NGrams.__str__">__str__() (NGrams method)</a>
 </li>
-        <li><a href="token.html#super_collator.token.Token.__iter__">(Token method)</a>
-</li>
-      </ul></li>
-      <li><a href="token.html#super_collator.token.MultiToken.__len__">__len__() (MultiToken method)</a>
-
-      <ul>
-        <li><a href="token.html#super_collator.token.SingleToken.__len__">(SingleToken method)</a>
-</li>
-        <li><a href="token.html#super_collator.token.Token.__len__">(Token method)</a>
-</li>
-      </ul></li>
-      <li><a href="token.html#super_collator.token.MultiToken.__str__">__str__() (MultiToken method)</a>
-
-      <ul>
-        <li><a href="token.html#super_collator.token.SingleToken.__str__">(SingleToken method)</a>
-</li>
-        <li><a href="token.html#super_collator.token.Token.__str__">(Token method)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -157,19 +119,7 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="strategy.html#super_collator.strategy.bit_count">bit_count() (in module super_collator.strategy)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="aligner.html#super_collator.aligner.build_debug_matrix">build_debug_matrix() (in module super_collator.aligner)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="strategy.html#super_collator.strategy.CommonNgramsStrategy">CommonNgramsStrategy (class in super_collator.strategy)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -180,16 +130,20 @@
       <li><a href="aligner.html#super_collator.aligner.Data">Data (class in super_collator.aligner)</a>
 </li>
   </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.SingleToken.data">data (SingleToken attribute)</a>
-</li>
-  </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="aligner.html#super_collator.aligner.Aligner.extend_score">extend_score (Aligner attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ngrams.html#super_collator.ngrams.NGrams.load">load() (NGrams method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -203,14 +157,16 @@
       <ul>
         <li><a href="aligner.html#module-super_collator.aligner">super_collator.aligner</a>
 </li>
-        <li><a href="strategy.html#module-super_collator.strategy">super_collator.strategy</a>
-</li>
-        <li><a href="token.html#module-super_collator.token">super_collator.token</a>
+        <li><a href="ngrams.html#module-super_collator.ngrams">super_collator.ngrams</a>
 </li>
       </ul></li>
   </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.MultiToken">MultiToken (class in super_collator.token)</a>
+      <li><a href="ngrams.html#super_collator.ngrams.NGrams">NGrams (class in super_collator.ngrams)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -228,12 +184,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="aligner.html#super_collator.aligner.Data.p">p (Data attribute)</a>
 </li>
-      <li><a href="strategy.html#super_collator.strategy.CommonNgramsStrategy.preprocess">preprocess() (CommonNgramsStrategy method)</a>
-
-      <ul>
-        <li><a href="strategy.html#super_collator.strategy.Strategy.preprocess">(Strategy method)</a>
-</li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="aligner.html#super_collator.aligner.Data.pSize">pSize (Data attribute)</a>
@@ -258,28 +208,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="aligner.html#super_collator.aligner.Data.score">score (Data attribute)</a>
 </li>
-      <li><a href="strategy.html#super_collator.strategy.CommonNgramsStrategy.similarity">similarity() (CommonNgramsStrategy method)</a>
-
-      <ul>
-        <li><a href="strategy.html#super_collator.strategy.Strategy.similarity">(Strategy method)</a>
-</li>
-        <li><a href="strategy.html#super_collator.strategy.StringEqualsStrategy.similarity">(StringEqualsStrategy method)</a>
-</li>
-      </ul></li>
-      <li><a href="token.html#super_collator.token.SingleToken">SingleToken (class in super_collator.token)</a>
-</li>
-      <li><a href="strategy.html#super_collator.strategy.CommonNgramsStrategy.split_ngrams">split_ngrams() (CommonNgramsStrategy static method)</a>
+      <li><a href="ngrams.html#super_collator.ngrams.NGrams.similarity">similarity() (NGrams static method)</a>
 </li>
       <li><a href="aligner.html#super_collator.aligner.Aligner.start_score">start_score (Aligner attribute)</a>
 </li>
-      <li><a href="strategy.html#super_collator.strategy.Strategy">Strategy (class in super_collator.strategy)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.Token.strategy_data">strategy_data (Token attribute)</a>
-</li>
-      <li><a href="strategy.html#super_collator.strategy.StringEqualsStrategy">StringEqualsStrategy (class in super_collator.strategy)</a>
-</li>
       <li>
     super_collator.aligner
 
@@ -288,35 +222,12 @@
 </li>
       </ul></li>
       <li>
-    super_collator.strategy
+    super_collator.ngrams
 
       <ul>
-        <li><a href="strategy.html#module-super_collator.strategy">module</a>
+        <li><a href="ngrams.html#module-super_collator.ngrams">module</a>
 </li>
       </ul></li>
-      <li>
-    super_collator.token
-
-      <ul>
-        <li><a href="token.html#module-super_collator.token">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.Token">Token (class in super_collator.token)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="U">U</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="token.html#super_collator.token.SingleToken.user_data">user_data (SingleToken attribute)</a>
-</li>
   </ul></td>
 </tr></table>
 

@@ -4,59 +4,78 @@
 
 import pytest
 
+import super_collator.aligner
 from super_collator.aligner import Aligner
-from super_collator.strategy import CommonNgramsStrategy
-from super_collator.token import SingleToken, MultiToken
-from super_collator.super_collator import align, to_string, to_table
+from super_collator.ngrams import NGrams
+from super_collator.super_collator import to_table
 
 
 @pytest.fixture
 def the_fox():
-    return [
-        SingleToken(s) for s in "the quick brown fox jumps over the lazy dog".split()
-    ]
+    return "the quick brown fox jumps over the lazy dog"
 
 
-STRATEGIES = [CommonNgramsStrategy(2), CommonNgramsStrategy(3)]
+STRATEGIES = [2, 3]
 
 
-@pytest.mark.parametrize("strategy", STRATEGIES)
+def to_string(seq, strategy):
+    """Convert a sequence of tokens into a string.
+
+    This function calls str() on each token.
+    """
+    return " ".join([strategy.postprocess(t) or "-" for t in seq])
+
+
+class TestAlignStrings:
+    @staticmethod
+    def to_string(aligned):
+        return " ".join([str(t or "-") for t in aligned])
+
+    def similarity(a, b):
+        return 1.0 if a == b else 0.0
+
+    def test_align_1(self, the_fox):
+        aligner = Aligner()
+        a = the_fox.split()
+        b = "the brown dog".split()
+        a, b, score = aligner.align(a, b, str.__eq__, lambda: "-")
+        assert " ".join(b) == "the - brown - - - - - dog"
+
+
+@pytest.mark.parametrize("n", STRATEGIES)
 class TestAlign:
-    def test_align_1(self, strategy, the_fox):
-        b = [SingleToken(s) for s in "rumps".split()]
-        aligned, score = align(the_fox, b, strategy)
-        assert to_string(aligned, 1) == "- - - - rumps - - - -"
+    @staticmethod
+    def preprocess(seq, n):
+        return [NGrams(s).load(s, n) for s in seq]
 
-    def test_align_2(self, strategy, the_fox):
-        b = [SingleToken(s) for s in "the brown dog".split()]
-        aligned, score = align(the_fox, b, strategy)
-        assert to_string(aligned, 1) == "the - brown - - - - - dog"
+    @staticmethod
+    def gap():
+        return NGrams("-")
 
-    def test_align_3(self, strategy, the_fox):
+    @staticmethod
+    def to_string(seq):
+        return " ".join([str(t) for t in seq])
+
+    def test_align_1(self, n, the_fox):
+        aligner = Aligner()
+        a = self.preprocess(the_fox.split(), n)
+        b = self.preprocess("rumps".split(), n)
+        a, b, score = aligner.align(a, b, NGrams.similarity, self.gap)
+        assert self.to_string(b) == "- - - - rumps - - - -"
+
+    def test_align_2(self, n, the_fox):
+        aligner = Aligner()
+        a = self.preprocess(the_fox.split(), n)
+        b = self.preprocess("the brown dog".split(), n)
+        a, b, score = aligner.align(a, b, NGrams.similarity, self.gap)
+        assert self.to_string(b) == "the - brown - - - - - dog"
+
+    def test_align_3(self, n, the_fox):
+        super_collator.aligner.DEBUG = True
         aligner = Aligner()
         aligner.start_score = 0
-        b = [SingleToken(s) for s in "the sissy".split()]
-        aligned, score = align(the_fox, b, strategy, aligner)
-        assert to_string(aligned, 1) == "- - - - - - the sissy -"
-
-
-@pytest.mark.parametrize("strategy", STRATEGIES)
-class TestMultiAlign:
-    def test_multi_align_1(self, strategy, the_fox):
-        aligner = Aligner()
-        aligner.open_score = -0.5
-        aligner.start_score = -0.5
-        a = the_fox
-        b = [SingleToken(s) for s in "the quick dog".split()]
-        c = [SingleToken(s) for s in "rumps".split()]
-        d = [SingleToken(s) for s in "lady".split()]
-        assert to_string(b, 0) == "the quick dog"
-
-        e, score = align(a, b, strategy, aligner)
-        assert to_string(e, 1) == "the quick - - - - - - dog"
-
-        f, score = align(e, c, strategy, aligner)
-        assert to_string(f, 2) == "- - - - rumps - - - -"
-
-        g, score = align(f, d, strategy, aligner)
-        assert to_string(g, 3) == "- - - - - - - lady -"
+        a = self.preprocess(the_fox.split(), n)
+        b = self.preprocess("the sissy".split(), n)
+        a, b, score = aligner.align(a, b, NGrams.similarity, self.gap)
+        super_collator.aligner.DEBUG = False
+        assert self.to_string(b) == "- - - - - - the sissy -"
