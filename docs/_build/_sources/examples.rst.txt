@@ -8,7 +8,7 @@ Install:
    $ pip install super-collator
 
 
-Align with relaxed spelling:
+Align two strings with relaxed spelling using N-Grams:
 
 .. code-block:: python
 

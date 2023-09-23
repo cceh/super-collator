@@ -5,7 +5,7 @@ class NGrams:
     """A class that compares two strings using N-Grams."""
 
     def __init__(self, user_data=None):
-        self.ngrams = set()
+        self.ngrams = frozenset()
         self.user_data = user_data
 
     def load(self, s: str, n: int) -> "NGrams":
@@ -15,11 +15,11 @@ class NGrams:
         :param n: puts the N in N-Grams
         """
         if n == 1:
-            self.ngrams.update(list(s))
+            self.ngrams = frozenset(list(s))
         else:
             pad = " " * (n - 1)
             sp = pad + s + pad
-            self.ngrams.update([sp[i : i + n] for i in range(len(s) + n - 1)])
+            self.ngrams = frozenset([sp[i : i + n] for i in range(len(s) + n - 1)])
         return self
 
     def __str__(self) -> str:

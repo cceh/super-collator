@@ -7,7 +7,13 @@ import pytest
 import super_collator.aligner
 from super_collator.aligner import Aligner
 from super_collator.ngrams import NGrams
-from super_collator.super_collator import to_table
+from super_collator.super_collator import (
+    to_table,
+    to_table_html,
+    html_style,
+    build_debug_matrix,
+    build_debug_matrix_html,
+)
 
 
 @pytest.fixture
@@ -30,9 +36,6 @@ class TestAlignStrings:
     @staticmethod
     def to_string(aligned):
         return " ".join([str(t or "-") for t in aligned])
-
-    def similarity(a, b):
-        return 1.0 if a == b else 0.0
 
     def test_align_1(self, the_fox):
         aligner = Aligner()
@@ -71,11 +74,19 @@ class TestAlign:
         assert self.to_string(b) == "the - brown - - - - - dog"
 
     def test_align_3(self, n, the_fox):
-        super_collator.aligner.DEBUG = True
-        aligner = Aligner()
-        aligner.start_score = 0
+        aligner = Aligner(
+            0, 0, 0
+        )  # the gap penalties would overwhelm the small similarities
         a = self.preprocess(the_fox.split(), n)
-        b = self.preprocess("the sissy".split(), n)
-        a, b, score = aligner.align(a, b, NGrams.similarity, self.gap)
-        super_collator.aligner.DEBUG = False
-        assert self.to_string(b) == "- - - - - - the sissy -"
+        b = self.preprocess("that ox is crazy".split(), n)
+        a, b, score, matrix = aligner.align_debug(
+            a, b, NGrams.similarity, self.gap, self.gap, True
+        )
+        assert self.to_string(b) == "that - - ox is - - crazy -"
+
+        # go for full coverage
+        to_table((a, b))
+        to_table_html("FakeId", (a, b))
+        html_style()
+        build_debug_matrix_html(matrix, a, b, "FakeId")
+        build_debug_matrix(matrix, a, b)

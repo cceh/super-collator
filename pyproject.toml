@@ -78,7 +78,7 @@ legacy_tox_ini = """
 
 [tox]
 isolated_build = True
-envlist = pypy38,py39,py310,py311
+envlist = pypy39,py39,py310,py311,py312
 
 [testenv]
 allowlist_externals = make

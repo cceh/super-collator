@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; super-collator 0.0.2 documentation</title>
+  <title>Examples &mdash; super-collator 0.0.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -13,14 +13,15 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=47de8214"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Aligner" href="aligner.html" />
+    <link rel="next" title="Overview of the Collation Algorithm" href="algorithm.html" />
     <link rel="prev" title="Super Collator" href="index.html" /> 
 </head>
 
@@ -29,12 +30,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> super-collator
-            <img src="_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            super-collator
+              <img src="_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -43,8 +48,48 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aligner.html">Aligner</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Overview of the Collation Algorithm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#phase-1-build-table">Phase 1 - Build Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#phase-2-backtrack">Phase 2 - Backtrack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aligner.html">Aligner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aligner.html#super_collator.aligner.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.__init__"><code class="docutils literal notranslate"><span class="pre">Data.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.score"><code class="docutils literal notranslate"><span class="pre">Data.score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.m"><code class="docutils literal notranslate"><span class="pre">Data.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.p"><code class="docutils literal notranslate"><span class="pre">Data.p</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.q"><code class="docutils literal notranslate"><span class="pre">Data.q</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.backtrack"><code class="docutils literal notranslate"><span class="pre">Data.backtrack</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.prefilled"><code class="docutils literal notranslate"><span class="pre">Data.prefilled</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.backtracked"><code class="docutils literal notranslate"><span class="pre">Data.backtracked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.arrow"><code class="docutils literal notranslate"><span class="pre">Data.arrow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.__str__"><code class="docutils literal notranslate"><span class="pre">Data.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.str_size"><code class="docutils literal notranslate"><span class="pre">Data.str_size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner"><code class="docutils literal notranslate"><span class="pre">Aligner</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.__init__"><code class="docutils literal notranslate"><span class="pre">Aligner.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.start_score"><code class="docutils literal notranslate"><span class="pre">Aligner.start_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.open_score"><code class="docutils literal notranslate"><span class="pre">Aligner.open_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.extend_score"><code class="docutils literal notranslate"><span class="pre">Aligner.extend_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.align"><code class="docutils literal notranslate"><span class="pre">Aligner.align()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.align_debug"><code class="docutils literal notranslate"><span class="pre">Aligner.align_debug()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams"><code class="docutils literal notranslate"><span class="pre">NGrams</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.__init__"><code class="docutils literal notranslate"><span class="pre">NGrams.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.load"><code class="docutils literal notranslate"><span class="pre">NGrams.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.__str__"><code class="docutils literal notranslate"><span class="pre">NGrams.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.similarity"><code class="docutils literal notranslate"><span class="pre">NGrams.similarity()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
@@ -61,8 +106,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Examples</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,12 +118,12 @@
            <div itemprop="articleBody">
              
   <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h1>
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
 <p>Install:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install super-collator
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>super-collator
 </pre></div>
 </div>
-<p>Align with relaxed spelling:</p>
+<p>Align two strings with relaxed spelling using N-Grams:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.aligner</span> <span class="kn">import</span> <span class="n">Aligner</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.ngrams</span> <span class="kn">import</span> <span class="n">NGrams</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.super_collator</span> <span class="kn">import</span> <span class="n">to_table</span>
@@ -86,10 +131,10 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aligner</span> <span class="o">=</span> <span class="n">Aligner</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;Lorem ipsum dollar amat adipiscing elit&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;qui dolorem ipsum quia dolor sit amet consectetur adipisci velit&quot;</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">NGrams</span><span class="o">.</span><span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">to_table</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">a</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">b</span><span class="p">))))</span>  
 <span class="go">-   Lorem   ipsum -    dollar -   amat -           adipiscing elit</span>
@@ -100,7 +145,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.aligner</span> <span class="kn">import</span> <span class="n">Aligner</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.ngrams</span> <span class="kn">import</span> <span class="n">NGrams</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.super_collator</span> <span class="kn">import</span> <span class="n">to_table</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">sim</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">aa</span><span class="p">:</span>
@@ -109,24 +154,24 @@
 <span class="gp">... </span>            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">sim</span><span class="p">:</span>
 <span class="gp">... </span>                <span class="n">sim</span> <span class="o">=</span> <span class="n">score</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">sim</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="p">[</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">)]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aligner</span> <span class="o">=</span> <span class="n">Aligner</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;qui dolorem ipsum quia dolor sit amet consectetur adipisci velit&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;Lorem ipsum adipiscing&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;Lorem dollar amat elit&quot;</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span>  <span class="n">b</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>  <span class="n">b</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)],</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ab</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">abc</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">to_table</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[[</span><span class="n">t</span><span class="o">.</span><span class="n">user_data</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">nn</span><span class="p">]</span> <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="n">abc</span><span class="p">])))</span>  
 <span class="go">qui dolorem ipsum quia dolor  sit amet consectetur adipisci   velit</span>
 <span class="go">-   Lorem   ipsum -    -      -   -    -           adipiscing -</span>
@@ -136,7 +181,7 @@
 <p>Align two sentences using their part-of-speech tags only:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.aligner</span> <span class="kn">import</span> <span class="n">Aligner</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">super_collator.super_collator</span> <span class="kn">import</span> <span class="n">to_table</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">PosToken</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span>
@@ -148,14 +193,14 @@
 <span class="gp">... </span>    <span class="nd">@staticmethod</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">pos</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">pos</span> <span class="k">else</span> <span class="mf">0.0</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aligner</span> <span class="o">=</span> <span class="n">Aligner</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;it/PRP was/VBD a/DT dark/JJ and/CC stormy/JJ night/NN&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;it/PRP is/VBZ a/DT fine/JJ day/NN&quot;</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">PosToken</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">PosToken</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">PosToken</span><span class="o">.</span><span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">PosToken</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">to_table</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">c</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">))))</span>  
 <span class="go">it was a dark and stormy night</span>
@@ -169,13 +214,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Super Collator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="aligner.html" class="btn btn-neutral float-right" title="Aligner" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="algorithm.html" class="btn btn-neutral float-right" title="Overview of the Collation Algorithm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Marcello Perathoner.</p>
+    <p>&#169; Copyright 2022-23, Marcello Perathoner.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

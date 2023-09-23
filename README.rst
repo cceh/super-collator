@@ -8,11 +8,13 @@ Super Collator
 
 .. |py311| image:: docs/_images/tox-py311.svg
 
-.. |pypy38| image:: docs/_images/tox-pypy38.svg
+.. |py312| image:: docs/_images/tox-py312.svg
+
+.. |pypy39| image:: docs/_images/tox-pypy39.svg
 
 .. |coverage| image:: docs/_images/coverage.svg
 
-|py39| |py310| |py311| |pypy38| |coverage|
+|py39| |py310| |py311| |py312| |pypy39| |coverage|
 
 Collates textual sources with relaxed spelling.  Uses Gotoh's variant of the
 Needleman-Wunsch sequence alignment algorithm.

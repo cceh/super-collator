@@ -10,6 +10,7 @@ Needleman-Wunsch sequence alignment algorithm.
    :caption: Contents:
 
    examples
+   algorithm
    aligner
    ngrams
    references

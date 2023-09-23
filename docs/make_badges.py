@@ -17,18 +17,17 @@ REFDIR = "docs/"  # logical from .rst
 badges = {}
 
 # one build=passing badge for each python version
-for filename in glob.glob(".tox/py*/log/2-commands*.log"):
+for filename in glob.glob(".tox/py*/log/*commands*.log"):
     with open(filename, "r") as fp:
         status = "passing"
         color = "success"
         for line in fp:
             if line.startswith("name: "):
                 name = line[6:].strip()
-            if line.startswith("==="):
-                if m := re.search(r"(\d+) failed", line):
-                    failed = int(m.group(1))
-                    status = "failed"
-                    color = "critical"
+            if m := re.search(r"===.*(\d+) failed", line):
+                failed = int(m.group(1))
+                status = "failed"
+                color = "critical"
     badge = requests.get(f"https://img.shields.io/badge/{name}-{status}-{color}").text
     filename = f"_images/tox-{name}.svg"
     with open(f"{DESTDIR}{filename}", "w") as dest:

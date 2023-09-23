@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = "super-collator"
-copyright = "2022, Marcello Perathoner"
+copyright = "2022-23, Marcello Perathoner"
 author = "Marcello Perathoner"
 
 # The full version, including alpha/beta/rc tags
-release = "0.0.2"
+release = "0.0.3"
 
 
 # -- General configuration ---------------------------------------------------

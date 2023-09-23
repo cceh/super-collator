@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; super-collator 0.0.2 documentation</title>
+  <title>Python Module Index &mdash; super-collator 0.0.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -12,10 +12,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=47de8214"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -33,12 +34,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> super-collator
-            <img src="_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            super-collator
+              <img src="_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,8 +52,48 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aligner.html">Aligner</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Collation Algorithm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#phase-1-build-table">Phase 1 - Build Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#phase-2-backtrack">Phase 2 - Backtrack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aligner.html">Aligner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aligner.html#super_collator.aligner.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.__init__"><code class="docutils literal notranslate"><span class="pre">Data.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.score"><code class="docutils literal notranslate"><span class="pre">Data.score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.m"><code class="docutils literal notranslate"><span class="pre">Data.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.p"><code class="docutils literal notranslate"><span class="pre">Data.p</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.q"><code class="docutils literal notranslate"><span class="pre">Data.q</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.backtrack"><code class="docutils literal notranslate"><span class="pre">Data.backtrack</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.prefilled"><code class="docutils literal notranslate"><span class="pre">Data.prefilled</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.backtracked"><code class="docutils literal notranslate"><span class="pre">Data.backtracked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.arrow"><code class="docutils literal notranslate"><span class="pre">Data.arrow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.__str__"><code class="docutils literal notranslate"><span class="pre">Data.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Data.str_size"><code class="docutils literal notranslate"><span class="pre">Data.str_size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner"><code class="docutils literal notranslate"><span class="pre">Aligner</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.__init__"><code class="docutils literal notranslate"><span class="pre">Aligner.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.start_score"><code class="docutils literal notranslate"><span class="pre">Aligner.start_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.open_score"><code class="docutils literal notranslate"><span class="pre">Aligner.open_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.extend_score"><code class="docutils literal notranslate"><span class="pre">Aligner.extend_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.align"><code class="docutils literal notranslate"><span class="pre">Aligner.align()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#super_collator.aligner.Aligner.align_debug"><code class="docutils literal notranslate"><span class="pre">Aligner.align_debug()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams"><code class="docutils literal notranslate"><span class="pre">NGrams</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.__init__"><code class="docutils literal notranslate"><span class="pre">NGrams.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.load"><code class="docutils literal notranslate"><span class="pre">NGrams.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.__str__"><code class="docutils literal notranslate"><span class="pre">NGrams.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.similarity"><code class="docutils literal notranslate"><span class="pre">NGrams.similarity()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
@@ -65,8 +110,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Python Module Index</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python Module Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -110,7 +155,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Marcello Perathoner.</p>
+    <p>&#169; Copyright 2022-23, Marcello Perathoner.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

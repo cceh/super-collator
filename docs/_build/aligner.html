@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aligner &mdash; super-collator 0.0.2 documentation</title>
+  <title>Aligner &mdash; super-collator 0.0.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -13,17 +13,18 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=47de8214"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script>window.MathJax = {"tex": {"macros": {"bs": ["\\boldsymbol"]}}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="NGrams" href="ngrams.html" />
-    <link rel="prev" title="Examples" href="examples.html" /> 
+    <link rel="prev" title="Overview of the Collation Algorithm" href="algorithm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,12 +32,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> super-collator
-            <img src="_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            super-collator
+              <img src="_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,8 +50,48 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Aligner</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithm.html">Overview of the Collation Algorithm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#phase-1-build-table">Phase 1 - Build Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#phase-2-backtrack">Phase 2 - Backtrack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Aligner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#super_collator.aligner.Data"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.__init__"><code class="docutils literal notranslate"><span class="pre">Data.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.score"><code class="docutils literal notranslate"><span class="pre">Data.score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.m"><code class="docutils literal notranslate"><span class="pre">Data.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.p"><code class="docutils literal notranslate"><span class="pre">Data.p</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.q"><code class="docutils literal notranslate"><span class="pre">Data.q</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.backtrack"><code class="docutils literal notranslate"><span class="pre">Data.backtrack</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.prefilled"><code class="docutils literal notranslate"><span class="pre">Data.prefilled</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.backtracked"><code class="docutils literal notranslate"><span class="pre">Data.backtracked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.arrow"><code class="docutils literal notranslate"><span class="pre">Data.arrow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.__str__"><code class="docutils literal notranslate"><span class="pre">Data.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Data.str_size"><code class="docutils literal notranslate"><span class="pre">Data.str_size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#super_collator.aligner.Aligner"><code class="docutils literal notranslate"><span class="pre">Aligner</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Aligner.__init__"><code class="docutils literal notranslate"><span class="pre">Aligner.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Aligner.start_score"><code class="docutils literal notranslate"><span class="pre">Aligner.start_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Aligner.open_score"><code class="docutils literal notranslate"><span class="pre">Aligner.open_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Aligner.extend_score"><code class="docutils literal notranslate"><span class="pre">Aligner.extend_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Aligner.align"><code class="docutils literal notranslate"><span class="pre">Aligner.align()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#super_collator.aligner.Aligner.align_debug"><code class="docutils literal notranslate"><span class="pre">Aligner.align_debug()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ngrams.html">NGrams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams"><code class="docutils literal notranslate"><span class="pre">NGrams</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.__init__"><code class="docutils literal notranslate"><span class="pre">NGrams.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.load"><code class="docutils literal notranslate"><span class="pre">NGrams.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.__str__"><code class="docutils literal notranslate"><span class="pre">NGrams.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ngrams.html#super_collator.ngrams.NGrams.similarity"><code class="docutils literal notranslate"><span class="pre">NGrams.similarity()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
@@ -63,8 +108,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Aligner</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Aligner</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/aligner.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,52 +120,82 @@
            <div itemprop="articleBody">
              
   <section id="module-super_collator.aligner">
-<span id="aligner"></span><h1>Aligner<a class="headerlink" href="#module-super_collator.aligner" title="Permalink to this headline"></a></h1>
+<span id="aligner"></span><h1>Aligner<a class="headerlink" href="#module-super_collator.aligner" title="Link to this heading"></a></h1>
 <p>This module implements the aligner.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="super_collator.aligner.Data">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Data" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Data" title="Link to this definition"></a></dt>
 <dd><p>Private data class for the Needleman-Wunsch+Gotoh sequence aligner.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="super_collator.aligner.Data.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Data.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Data.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="super_collator.aligner.Data.score">
-<span class="sig-name descname"><span class="pre">score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.score" title="Permalink to this definition"></a></dt>
-<dd><p>The current score.</p>
+<span class="sig-name descname"><span class="pre">score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.score" title="Link to this definition"></a></dt>
+<dd><p>The cumulative score up to this square.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="super_collator.aligner.Data.m">
+<span class="sig-name descname"><span class="pre">m</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.m" title="Link to this definition"></a></dt>
+<dd><p>The score for this alignment as match.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="super_collator.aligner.Data.p">
-<span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.p" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.p" title="Link to this definition"></a></dt>
 <dd><p><span class="math notranslate nohighlight">\(P_{m,n}\)</span> in <a class="reference internal" href="references.html#gotoh1982" id="id1"><span>[Gotoh1982]</span></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="super_collator.aligner.Data.q">
-<span class="sig-name descname"><span class="pre">q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.q" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Data.q" title="Link to this definition"></a></dt>
 <dd><p><span class="math notranslate nohighlight">\(Q_{m,n}\)</span> in <a class="reference internal" href="references.html#gotoh1982" id="id2"><span>[Gotoh1982]</span></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="super_collator.aligner.Data.pSize">
-<span class="sig-name descname"><span class="pre">pSize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#super_collator.aligner.Data.pSize" title="Permalink to this definition"></a></dt>
-<dd><p>The size of the p gap. <span class="math notranslate nohighlight">\(k\)</span> in <a class="reference internal" href="references.html#gotoh1982" id="id3"><span>[Gotoh1982]</span></a>.</p>
+<dt class="sig sig-object py" id="super_collator.aligner.Data.backtrack">
+<span class="sig-name descname"><span class="pre">backtrack</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#super_collator.aligner.Data.backtrack" title="Link to this definition"></a></dt>
+<dd><p>A copy of the backtracking matrix entry for debugging.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="super_collator.aligner.Data.qSize">
-<span class="sig-name descname"><span class="pre">qSize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#super_collator.aligner.Data.qSize" title="Permalink to this definition"></a></dt>
-<dd><p>The size of the q gap. <span class="math notranslate nohighlight">\(k\)</span> in <a class="reference internal" href="references.html#gotoh1982" id="id4"><span>[Gotoh1982]</span></a>.</p>
+<dt class="sig sig-object py" id="super_collator.aligner.Data.prefilled">
+<span class="sig-name descname"><span class="pre">prefilled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#super_collator.aligner.Data.prefilled" title="Link to this definition"></a></dt>
+<dd><p>True if this cell was prefilled.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="super_collator.aligner.Data.backtracked">
+<span class="sig-name descname"><span class="pre">backtracked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#super_collator.aligner.Data.backtracked" title="Link to this definition"></a></dt>
+<dd><p>True if we actually backtracked through this entry.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="super_collator.aligner.Data.arrow">
+<span class="sig-name descname"><span class="pre">arrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#super_collator.aligner.Data.arrow" title="Link to this definition"></a></dt>
+<dd><p>Returns the appropriate arrow form.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="super_collator.aligner.Data.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Data.__str__" title="Link to this definition"></a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="super_collator.aligner.Data.str_size">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">str_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Data.str_size" title="Link to this definition"></a></dt>
+<dd><p>The size of the string returned by __str__.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="super_collator.aligner.Aligner">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Aligner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Aligner" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Aligner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Aligner" title="Link to this definition"></a></dt>
 <dd><p>A generic Needleman-Wunsch+Gotoh sequence aligner.</p>
 <p>This implementation uses Gotoh’s improvements to get <span class="math notranslate nohighlight">\(\mathcal{O}(mn)\)</span> running time
 and reduce memory requirements to essentially the backtracking matrix only.  In
@@ -140,70 +215,74 @@ Part-of-Speech tags.  In this case the data type aligned could be a dict contain
 the word and the POS-tag.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="references.html#needlemanwunsch1970" id="id5"><span>[NeedlemanWunsch1970]</span></a></p>
-<p><a class="reference internal" href="references.html#gotoh1982" id="id6"><span>[Gotoh1982]</span></a></p>
+<p><a class="reference internal" href="references.html#needlemanwunsch1970" id="id3"><span>[NeedlemanWunsch1970]</span></a></p>
+<p><a class="reference internal" href="references.html#gotoh1982" id="id4"><span>[Gotoh1982]</span></a></p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="super_collator.aligner.Aligner.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Aligner.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#super_collator.aligner.Aligner.__init__" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="super_collator.aligner.Aligner.start_score">
-<span class="sig-name descname"><span class="pre">start_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Aligner.start_score" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Aligner.start_score" title="Link to this definition"></a></dt>
 <dd><p>The gap opening score at the start of the string.
 Set this to 0 to find local alignments.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="super_collator.aligner.Aligner.open_score">
-<span class="sig-name descname"><span class="pre">open_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Aligner.open_score" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">open_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Aligner.open_score" title="Link to this definition"></a></dt>
 <dd><p>The gap opening score <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="super_collator.aligner.Aligner.extend_score">
-<span class="sig-name descname"><span class="pre">extend_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Aligner.extend_score" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">extend_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#super_collator.aligner.Aligner.extend_score" title="Link to this definition"></a></dt>
 <dd><p>The gap extension score <span class="math notranslate nohighlight">\(u\)</span>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="super_collator.aligner.Aligner.align">
-<span class="sig-name descname"><span class="pre">align</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#super_collator.aligner.Aligner.align" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">align</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#super_collator.aligner.Aligner.align" title="Link to this definition"></a></dt>
 <dd><p>Align two sequences.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>similarity</strong> – a callable that returns the similarity of two objects</p></li>
+<li><p><strong>seq_a</strong> – the first sequence to align</p></li>
+<li><p><strong>seq_b</strong> – the second sequence to align</p></li>
+<li><p><strong>similarity</strong> – a callable that returns the similarity of two members of seq_a and seq_b</p></li>
 <li><p><strong>gap_a</strong> – insert gap_a() for a gap in sequence a. None inserts None.</p></li>
 <li><p><strong>gap_b</strong> – insert gap_b() for a gap in sequence b. None inserts gap_a().</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the aligned sequences and the score</p>
 </dd>
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="super_collator.aligner.build_debug_matrix">
-<span class="sig-name descname"><span class="pre">build_debug_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#super_collator.aligner.Data" title="super_collator.aligner.Data"><span class="pre">super_collator.aligner.Data</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#super_collator.aligner.build_debug_matrix" title="Permalink to this definition"></a></dt>
-<dd><p>Build a human-readable debug matrix.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="super_collator.aligner.Aligner.align_debug">
+<span class="sig-name descname"><span class="pre">align_debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#super_collator.aligner.Data" title="super_collator.aligner.Data"><span class="pre">Data</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#super_collator.aligner.Aligner.align_debug" title="Link to this definition"></a></dt>
+<dd><p>Align two sequences and return debug information.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>matrix</strong> – the full scoring matrix</p></li>
-<li><p><strong>len_matrix</strong> – the backtracking matrix</p></li>
-<li><p><strong>ts_a</strong> – the first aligned string</p></li>
-<li><p><strong>ts_b</strong> – the second aligned string</p></li>
+<li><p><strong>seq_a</strong> – the first sequence to align</p></li>
+<li><p><strong>seq_b</strong> – the second sequence to align</p></li>
+<li><p><strong>similarity</strong> – a callable that returns the similarity of two members of seq_a and seq_b</p></li>
+<li><p><strong>gap_a</strong> – insert gap_a() for a gap in sequence a. None inserts None.</p></li>
+<li><p><strong>gap_b</strong> – insert gap_b() for a gap in sequence b. None inserts gap_a().</p></li>
+<li><p><strong>debug</strong> – calculate debug information if True, debug info wastes memory</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return str</dt>
-<dd class="field-even"><p>the debug matrix as human readable string</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the aligned sequences, the score, and the debug matrix</p>
 </dd>
 </dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -212,14 +291,14 @@ Set this to 0 to find local alignments.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="algorithm.html" class="btn btn-neutral float-left" title="Overview of the Collation Algorithm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="ngrams.html" class="btn btn-neutral float-right" title="NGrams" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Marcello Perathoner.</p>
+    <p>&#169; Copyright 2022-23, Marcello Perathoner.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
