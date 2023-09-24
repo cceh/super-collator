@@ -24,7 +24,9 @@ Align two strings with relaxed spelling using N-Grams:
    >>> b = [NGrams(s).load(s, 3) for s in b.split()]
    >>>
    >>> a, b, score = aligner.align(a, b, NGrams.similarity, lambda: NGrams("-"))
-   >>> print(to_table(list(map(str, a)), list(map(str, b))))  # doctest: +NORMALIZE_WHITESPACE
+   >>> print(
+   ...     to_table(list(map(str, a)), list(map(str, b)))
+   ... )  # doctest: +NORMALIZE_WHITESPACE
    -   Lorem   ipsum -    dollar -   amat -           adipiscing elit
    qui dolorem ipsum quia dolor  sit amet consectetur adipisci   velit
 
@@ -45,9 +47,11 @@ Multiple alignment: We repeatedly align two lists of NGrams against each other.
    ...             if score > sim:
    ...                 sim = score
    ...     return sim
+   ...
    >>>
    >>> def merge(aa, bb):
    ...     return [a + b for a, b in zip(aa, bb)]
+   ...
    >>>
    >>> aligner = Aligner(-1.0, -0.5, -0.5)
    >>> a = "qui dolorem ipsum quia dolor sit amet consectetur adipisci velit"
@@ -58,12 +62,18 @@ Multiple alignment: We repeatedly align two lists of NGrams against each other.
    >>> b = [[NGrams(s).load(s, 2)] for s in b.split()]
    >>> c = [[NGrams(s).load(s, 2)] for s in c.split()]
    >>>
-   >>> a,  b, score = aligner.align(a,  b, similarity, lambda: [NGrams("-")], lambda: [NGrams("-")])
+   >>> a, b, score = aligner.align(
+   ...     a, b, similarity, lambda: [NGrams("-")], lambda: [NGrams("-")]
+   ... )
    >>> ab = merge(a, b)
-   >>> ab, c, score = aligner.align(ab, c, similarity, lambda: [NGrams("-")] * 2, lambda: [NGrams("-")])
+   >>> ab, c, score = aligner.align(
+   ...     ab, c, similarity, lambda: [NGrams("-")] * 2, lambda: [NGrams("-")]
+   ... )
    >>> abc = merge(ab, c)
    >>>
-   >>> print(to_table(*zip(*[[t.user_data for t in nn] for nn in abc])))  # doctest: +NORMALIZE_WHITESPACE
+   >>> print(
+   ...     to_table(*zip(*[[t.user_data for t in nn] for nn in abc]))
+   ... )  # doctest: +NORMALIZE_WHITESPACE
    qui dolorem ipsum quia dolor  sit amet consectetur adipisci   velit
    -   Lorem   ipsum -    -      -   -    -           adipiscing -
    -   Lorem   -     -    dollar -   amat -           -          elit
@@ -87,6 +97,7 @@ Align two sentences using their part-of-speech tags only:
    ...     @staticmethod
    ...     def similarity(a, b):
    ...         return 1.0 if a.pos == b.pos else 0.0
+   ...
    >>>
    >>> aligner = Aligner()
    >>> a = "it/PRP was/VBD a/DT dark/JJ and/CC stormy/JJ night/NN"
@@ -96,6 +107,8 @@ Align two sentences using their part-of-speech tags only:
    >>> b = [PosToken(*s.split("/")) for s in b.split()]
    >>>
    >>> c, d, score = aligner.align(a, b, PosToken.similarity, lambda: PosToken("-", ""))
-   >>> print(to_table(list(map(str, c)), list(map(str, d))))  # doctest: +NORMALIZE_WHITESPACE
+   >>> print(
+   ...     to_table(list(map(str, c)), list(map(str, d)))
+   ... )  # doctest: +NORMALIZE_WHITESPACE
    it was a dark and stormy night
    it is  a fine -   -      day

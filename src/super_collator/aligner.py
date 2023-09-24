@@ -57,7 +57,9 @@ class Data:
                 emph[2] = True
         klass: List
         cells = []
-        for val, klass, em in zip((self.m, self.p, self.q), (["d"], ["p"], ["q"]), emph):  # type: ignore
+        for val, klass, em in zip(
+            (self.m, self.p, self.q), (["d"], ["p"], ["q"]), emph
+        ):  # type: ignore
             klass.append("inner")
             if em:
                 klass.append("em")
@@ -142,7 +144,8 @@ class Aligner:
 
         :param seq_a: the first sequence to align
         :param seq_b: the second sequence to align
-        :param similarity: a callable that returns the similarity of two members of seq_a and seq_b
+        :param similarity: a callable that returns the similarity of two members
+            of seq_a and seq_b
         :param gap_a: insert gap_a() for a gap in sequence a. None inserts None.
         :param gap_b: insert gap_b() for a gap in sequence b. None inserts gap_a().
         :return: the aligned sequences and the score
@@ -162,7 +165,8 @@ class Aligner:
 
         :param seq_a: the first sequence to align
         :param seq_b: the second sequence to align
-        :param similarity: a callable that returns the similarity of two members of seq_a and seq_b
+        :param similarity: a callable that returns the similarity of two members
+            of seq_a and seq_b
         :param gap_a: insert gap_a() for a gap in sequence a. None inserts None.
         :param gap_b: insert gap_b() for a gap in sequence b. None inserts gap_a().
         :param debug: calculate debug information if True, debug info wastes memory
@@ -210,7 +214,6 @@ class Aligner:
 
         # Score the matrix
         for i, a in enumerate(seq_a, start=1):
-
             # add new back_row to back_matrix
             this_back_row = []
             back_matrix.append(this_back_row)

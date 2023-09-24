@@ -3,14 +3,14 @@ blackdoc
 build
 coverage[toml]
 hatchling
-lxml
 mypy
-pip
 pydocstyle
 pylint
 pytest
+requests
 sphinx
 sphinx-rtd-theme
 toml
 tox
+types-requests
 twine

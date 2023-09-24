@@ -1,6 +1,7 @@
 .PHONY: lint test dist upload docs
 
-BIN=.venv/bin/
+ENV=.venv
+BIN=$(ENV)/bin/
 DIRS=src/ tests/unit/ docs/ scripts/ # tests/performance/
 BROWSER=firefox
 PYTEST=pytest --doctest-modules --doctest-glob="*.rst" --doctest-ignore-import-errors
@@ -20,41 +21,38 @@ mypy:
 	-$(BIN)mypy $(DIRS)
 
 doc8:
-	-doc8 README.rst
+	-$(BIN)doc8 README.rst
 
 pydocstyle:
-	$(BIN)pydocstyle src/
+	-$(BIN)pydocstyle src/
 
 lint: black blackdoc pylint mypy pydocstyle
 
 test:
-	$(BIN)python3 -m $(PYTEST) src/ tests/ docs/ README.rst
+	$(BIN)python -m $(PYTEST) src/ tests/ docs/ README.rst
 
 test-performance:
-	$(BIN)python3 -m $(PYTEST) --performance tests/performance/
+	$(BIN)python -m $(PYTEST) --performance tests/performance/
 
 coverage:
 	$(BIN)coverage erase
 	$(BIN)coverage run --branch --source=src -m $(PYTEST) tests/
 	$(BIN)coverage run --append --branch --source=src -m $(PYTEST) --debug-mode tests/
-	$(BIN)coverage report
 	$(BIN)coverage html
 	$(BROWSER) htmlcov/index.html
+	$(BIN)coverage json -o - | $(BIN)python tests/make_coverage_badge.py > docs/_images/badge-coverage.svg
 
 profile:
-	$(BIN)python3 -O -m scripts.profile
+	$(BIN)python -O -m scripts.profile
 
 docs:
-	cd docs; make html
-
-badges: coverage
-	$(BIN)python docs/make_badges.py
+	cd docs; make SPHINXBUILD='../$(BIN)python -msphinx' html
 
 tox:
 	$(BIN)tox
 
-dist: clean test coverage badges
-	$(BIN)python3 -m build
+dist: clean tox coverage docs
+	$(BIN)python -m build
 	$(BIN)twine check dist/*
 
 upload: dist
@@ -62,12 +60,15 @@ upload: dist
 	$(BIN)twine upload dist/*
 
 install:
-	$(BIN)pip3 install --force-reinstall -e .
+	python -m venv --clear $(ENV)
+	$(BIN)pip install -r requirements-dev.txt
+	$(BIN)pip install --force-reinstall -e .
 
 uninstall:
-	$(BIN)pip3 uninstall super_collator
+	$(BIN)pip uninstall super_collator
 
 clean:
-	-rm -rf dist build *.egg-info
+	-rm -rf dist build htmlcov .mypy_cache .pytest_cache .tox *.egg-info
+	-rm docs/_images/badge*.svg
 	-rm *~ .*~ pylintgraph.dot
 	-find . -name __pycache__ -type d -exec rm -r "{}" \;
