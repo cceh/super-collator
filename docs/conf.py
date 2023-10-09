@@ -14,6 +14,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+from super_collator import _version
 
 # -- Project information -----------------------------------------------------
 
@@ -22,7 +23,7 @@ copyright = "2022-23, Marcello Perathoner"
 author = "Marcello Perathoner"
 
 # The full version, including alpha/beta/rc tags
-release = "0.0.4"
+release = _version.VERSION
 
 
 # -- General configuration ---------------------------------------------------

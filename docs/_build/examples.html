@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; super-collator 0.0.4 documentation</title>
+  <title>Examples &mdash; super-collator 0.0.5 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8c5712d9"></script>
+        <script src="_static/documentation_options.js?v=282f96c0"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -137,7 +137,9 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">NGrams</span><span class="o">.</span><span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">to_table</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">a</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">b</span><span class="p">))))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">to_table</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">a</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+<span class="gp">... </span><span class="p">)</span>  
 <span class="go">-   Lorem   ipsum -    dollar -   amat -           adipiscing elit</span>
 <span class="go">qui dolorem ipsum quia dolor  sit amet consectetur adipisci   velit</span>
 </pre></div>
@@ -155,9 +157,11 @@
 <span class="gp">... </span>            <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">sim</span><span class="p">:</span>
 <span class="gp">... </span>                <span class="n">sim</span> <span class="o">=</span> <span class="n">score</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">sim</span>
+<span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="p">[</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">)]</span>
+<span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aligner</span> <span class="o">=</span> <span class="n">Aligner</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;qui dolorem ipsum quia dolor sit amet consectetur adipisci velit&quot;</span>
@@ -168,12 +172,18 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NGrams</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span>  <span class="n">b</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">a</span><span class="p">,</span>  <span class="n">b</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)],</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)],</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)]</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ab</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="n">NGrams</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)]</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">abc</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">to_table</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[[</span><span class="n">t</span><span class="o">.</span><span class="n">user_data</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">nn</span><span class="p">]</span> <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="n">abc</span><span class="p">])))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">to_table</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[[</span><span class="n">t</span><span class="o">.</span><span class="n">user_data</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">nn</span><span class="p">]</span> <span class="k">for</span> <span class="n">nn</span> <span class="ow">in</span> <span class="n">abc</span><span class="p">]))</span>
+<span class="gp">... </span><span class="p">)</span>  
 <span class="go">qui dolorem ipsum quia dolor  sit amet consectetur adipisci   velit</span>
 <span class="go">-   Lorem   ipsum -    -      -   -    -           adipiscing -</span>
 <span class="go">-   Lorem   -     -    dollar -   amat -           -          elit</span>
@@ -194,6 +204,7 @@
 <span class="gp">... </span>    <span class="nd">@staticmethod</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">pos</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">pos</span> <span class="k">else</span> <span class="mf">0.0</span>
+<span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aligner</span> <span class="o">=</span> <span class="n">Aligner</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;it/PRP was/VBD a/DT dark/JJ and/CC stormy/JJ night/NN&quot;</span>
@@ -203,7 +214,9 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">PosToken</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">aligner</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">PosToken</span><span class="o">.</span><span class="n">similarity</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">PosToken</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">to_table</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">c</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">))))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">to_table</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">c</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">)))</span>
+<span class="gp">... </span><span class="p">)</span>  
 <span class="go">it was a dark and stormy night</span>
 <span class="go">it is  a fine -   -      day</span>
 </pre></div>
