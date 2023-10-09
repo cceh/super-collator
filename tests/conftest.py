@@ -1,7 +1,6 @@
 import argparse
 import sys
 
-import pytest
 import requests
 
 class DebugAction(argparse.Action):
